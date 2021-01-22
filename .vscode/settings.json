@@ -1,0 +1,6 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylamaEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.pylintPath":"C:\\Users\\AHMED\\Desktop\\django_code_challenge\\events\\Scripts\\pylint.exe"
+}
