@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <!-- <link href="{% static 'css/test.css' %}" rel="stylesheet"> -->
+    </head>
+    <body class="text-capitalize">
+        <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+            <a class="navbar-brand" href="#">events site</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'events:events_list' %}">events list <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <div class="text-white auth-holder ml-5">
+                    {% if request.user.is_authenticated %}
+                    <span>welcome {{ request.user.get_usernamee }}</span>
+                    <span class="border mr-2 ml-2 p-2">
+                        <a href="{% url 'account:profile' %}">profile</a>
+                        <a href="{% url 'account:dashboard' %}">dashboard</a>
+                        <a href="{% url 'account:logout' %}">logout</a>
+                    </span>
+                    {% else %}
+                    <span class="border mr-2 ml-2 p-2">
+                        <a href="{% url 'account:register' %}">register</a>
+                        <a href="{% url 'account:login' %}">login</a>
+                        <a href="{% url 'account:password_reset' %}">forget the password</a>
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w==" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+</html>

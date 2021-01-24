@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}event details{% endblock %}
+{% block content %}
+    <div class="pt-4 mt-2 border">
+        <div class="text-center">{{ event.title }}</div>
+        <hr>
+        <div class="text-left p-2">
+            {{ event.description }}
+        </div>
+    </div>
+    <div class="row text-center pt-3">
+        <div class="col-6">
+            {% if num_of_users_paricipted_in_this_event %}
+                num of participants : {{ num_of_users_paricipted_in_this_event }}
+            {% else %}
+                <p>no users participted in this event yet</p>
+            {% endif %}
+        </div>
+        <div class="col-6">
+            {% if user_participted_in_this_event %}
+                <div class=""><p class="d-block text-primary">{{message}}</p></div>
+            {% else %}
+                
+                <div class=""><a href="{% url 'events:participate' event.id%}" class="d-block btn btn-primary">click to participate in this event</a></div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

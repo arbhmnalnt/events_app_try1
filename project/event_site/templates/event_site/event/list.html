@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}events list{% endblock %}
+{% block content %}
+    
+            <h1 class="">events list</h1>
+            {% for event in events %}
+            <div class="card mb-3 p-3">
+                <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}
+                </a>
+                </h2>
+                <p class="date text-lowercase">event date {{ event.date }} by {{ event.get_username}}</p>
+                {{ event.description|truncatewords:30|linebreaks }} <p class="text-muted"> read more by clicking on the title</p>
+                <span class="text-lowercase">
+                    {% if request.user.is_authenticated %}
+                        <span class="text-danger">you can participate in by cliking the event title then participate button</span>
+                    {% else %}
+                        you need to log in to be able to participate in event
+                    {% endif %}
+                </span>
+            </div>
+            
+            {% endfor %}
+    {% include "pagination.html" with page=events %}
+{% endblock %}
